@@ -1,0 +1,14 @@
+# JOGI Ayu AI — Full Knowledge Base & Verified Medical Corpus
+
+## 1. Classical Source Attribution
+All clinical data is cross-verified against classical Brihat-Trayi (Charaka Samhita, Sushruta Samhita, Ashtanga Hridaya) and Bhavaprakasha Nighantu.
+
+## 2. Clinical Dosha & Constitution Matrices
+- Vata: Governed by dry, cold, light qualities. Treated primarily via Sneha (unctuous oils), Basti, and Haritaki/Castor combinations.
+- Pitta: Governed by hot, sharp, light qualities. Treated via Sheetala Dravyas, Virechana, Amalaki, and Gulkand.
+- Kapha: Governed by heavy, slow, oily qualities. Treated via Vamana, dry heating herbs (Trikatu), Chankramana (brisk walking), and fasting.
+
+## 3. Panchakarma Operational Protocol
+- Purvakarma: Snehana (Internal medicated ghee titration 3–7 days) + Swedana (Fomentation 2–3 days).
+- Pradhanakarma: Vamana (Emesis for Kapha), Virechana (Purgation for Pitta), Basti (Medicated Enema for Vata - Anuvasana & Niruha), Nasya (Nasal administration), Raktamokshana (Blood purification).
+- Paschatkarma: Samsarjana Krama (Graded diet restoration from Peya to Vilepi).

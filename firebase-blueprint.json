@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "ChatLog": {
+      "title": "ChatLog",
+      "description": "Patient conversation log entry",
+      "type": "object",
+      "properties": {
+        "sender": { "type": "string" },
+        "text": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["sender", "text"]
+    },
+    "OpdLead": {
+      "title": "OpdLead",
+      "description": "Online OPD Consultation Lead booking record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "patientName": { "type": "string" },
+        "patientPhone": { "type": "string" },
+        "patientConcern": { "type": "string" },
+        "chatTranscript": { "type": "array" },
+        "status": { "type": "string" },
+        "consultationFee": { "type": "string" },
+        "timestamp": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "patientName", "patientPhone"]
+    }
+  },
+  "firestore": {
+    "/chatLogs/{logId}": {
+      "schema": "ChatLog",
+      "description": "Public chat messages exchanged in JOGI Ayurved AI Companion"
+    },
+    "/opdLeads/{leadId}": {
+      "schema": "OpdLead",
+      "description": "Online OPD Consultation booking requests"
+    }
+  }
+}

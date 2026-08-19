@@ -1,0 +1,17 @@
+            {/* Event History Panel */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <EventHistoryPanel recentEvents={events} />
+              <QueryAuditHistoryPanel />
+            </div>
+          </div>
+        </div>
+          </>
+        )}
+
+        {activeTab === 'logs' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <EventHistoryPanel recentEvents={events} />
+            <QueryAuditHistoryPanel />
+          </div>
+        )}
+      </main>

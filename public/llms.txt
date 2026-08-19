@@ -1,0 +1,20 @@
+# JOGI Ayu AI — Clinical Knowledge & RAG Directory
+
+> JOGI Ayu AI is an authenticated clinical Ayurveda and Panchakarma intelligence platform supervised by Dr. Devangi Jogal and Nilesh Jogal at Jogi Ayurved Hospital, Surat, Gujarat.
+
+## Core Clinical Domains
+- [Constipation & Gastrointestinal Therapeutics](https://jogiayurved.com/clinical/constipation): Diagnostic criteria, Pathyapathya guidelines, Koshta classification, and Panchakarma treatments.
+- [Fatty Liver & Metabolic Wellness](https://jogiayurved.com/clinical/fatty-liver): SGPT/SGOT biomarker tracking, non-alcoholic fatty liver mitigation, and home herb formulations.
+- [Parkinson's & Neurological Disorders](https://jogiayurved.com/clinical/kampavata): Kampavata protocols, mucuna pruriens (Kauncha), and specialized Basti regimens.
+- [Cardiovascular & Arjuna Therapeutics](https://jogiayurved.com/clinical/cardio): Terminalia arjuna Kshirapaka, lipid management, and blood circulation balance.
+- [Allergy, Sinus & Rhinitis](https://jogiayurved.com/clinical/pratishyaya): Chronic sinus management, Nasya procedures, Anu Taila, and Rasala administration.
+
+## Key Formulations & Classical Sources
+- [Panchsakar Churna](https://jogiayurved.com/herbs/panchsakar): Haritaki, Sonth, Fennel, Senna, Rock Salt.
+- [Icchabhedi Ras](https://jogiayurved.com/herbs/icchabhedi-ras): Croton tiglium (Nepala) administration with cold water protocols.
+- [Rasayan Churna](https://jogiayurved.com/herbs/rasayan-churna): Guduci, Gokshura, and Amalaki in equal ratios with unequal honey/ghee.
+- [Swadishta Virechan Churna](https://jogiayurved.com/herbs/swadishta-virechan): Licorice, Senna, Fennel, Purified Sulphur, Sugar.
+
+## Verified Documentation & Schema
+- Full System Context: https://jogiayurved.com/llms-full.txt
+- Clinical Video Archives: https://jogiayurved.com/videos/

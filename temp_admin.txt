@@ -1,0 +1,60 @@
+import React, { useState, useEffect } from 'react';
+import { Header } from './Header';
+import { RagMetricsPanel } from './RagMetricsPanel';
+import { KnowledgeBaseUploader } from './KnowledgeBaseUploader';
+import { LiveDatabaseSyncTable } from './LiveDatabaseSyncTable';
+import { EventHistoryPanel } from './EventHistoryPanel';
+import { RagMetricsChart } from './RagMetricsChart';
+import { VectorHealthWidget } from './VectorHealthWidget';
+import { ChunkModal } from './ChunkModal';
+import { RagPlaygroundModal } from './RagPlaygroundModal';
+import { TestRetrievalModal } from './TestRetrievalModal';
+import { QueryAuditHistoryPanel } from './QueryAuditHistoryPanel';
+import { DocumentHistorySidebar } from './DocumentHistorySidebar';
+import { DocumentMasonryGrid } from './DocumentMasonryGrid';
+import { MonitoringDashboard } from './MonitoringDashboard';
+import { IngestionHeatmap } from './IngestionHeatmap';
+import { SystemHealthWidget } from './SystemHealthWidget';
+import { Printer } from 'lucide-react';
+import { GlobalContentSearchModal } from './GlobalContentSearchModal';
+import { Toast } from './Toast';
+import { IndexedFile, RAGMetrics, ToastMessage, SystemEvent } from '../types';
+import { Database, Shield, Zap, Sparkles, History, Search, Download, FileText } from 'lucide-react';
+import { generateAdminPdfReport } from '../lib/generateAdminPdfReport';
+import { AdminSyncAndNotifications, BulkPdfUploaderZone } from './AdminSyncAndNotifications';
+
+async function fetchWithBackoff(
+  url: string,
+  options?: RequestInit,
+  maxRetries = 3,
+  delay = 1200
+): Promise<Response> {
+  let attempt = 0;
+  while (true) {
+    try {
+      const res = await fetch(url, options);
+      if (res.status === 429 && attempt < maxRetries) {
+        attempt++;
+        const waitTime = delay * Math.pow(2, attempt - 1) + Math.random() * 400;
+        await new Promise((r) => setTimeout(r, waitTime));
+        continue;
+      }
+      return res;
+    } catch (err) {
+      attempt++;
+      if (attempt >= maxRetries) throw err;
+      const waitTime = delay * Math.pow(2, attempt - 1);
+      await new Promise((r) => setTimeout(r, waitTime));
+    }
+  }
+}
+
+export const AdminDashboard: React.FC = () => {
+
+  const handleAdminPdfExport = () => {
+    generateAdminPdfReport(ragMetrics, indexedFiles, events);
+    showToast('Report Downloaded', 'Multi-page PDF summary generated with system metrics and ingestion logs.', 'success');
+  };
+
+  const [indexedFiles, setIndexedFiles] = useState<IndexedFile[]>([]);
+  const [isLoadingFiles, setIsLoadingFiles] = useState(true);

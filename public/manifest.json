@@ -1,0 +1,29 @@
+{
+  "short_name": "JOGI Ayu AI",
+  "name": "JOGI Ayu AI Clinical Sanctuary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "192x192",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "512x512",
+      "purpose": "maskable"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#051919",
+  "theme_color": "#051919",
+  "display": "standalone",
+  "orientation": "portrait"
+}

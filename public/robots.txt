@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/rag/
+Disallow: /private/
+Disallow: /drafts/
+
+# AI, LLM, Search Engine & Crawler Allow Directives
+User-agent: Googlebot
+User-agent: Googlebot-Image
+User-agent: Google-Extended
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Applebot
+User-agent: Bingbot
+User-agent: deepseek-ai
+Allow: /
+
+# Sitemap Declarations
+Sitemap: https://jogiayurved.com/sitemap.xml
+Sitemap: https://jogiayurved.com/sitemap-clinical.xml
+Sitemap: https://jogiayurved.com/sitemap-herbs.xml
+
+# LLM Manifest Reference
+# LLMs.txt Path: https://jogiayurved.com/llms.txt
+# LLMs-Full Path: https://jogiayurved.com/llms-full.txt

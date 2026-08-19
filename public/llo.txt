@@ -1,0 +1,19 @@
+# LLO Manifest: JOGI Ayurved Knowledge Graph Structure
+VERSION: 1.0.0
+CANONICAL_DOMAIN: https://jogiayurved.com/
+PRIMARY_LANGUAGE: en, gu, hi
+
+[ENTITIES]
+- Entity: JOGI Ayurved Hospital (Type: MedicalClinic/AyurvedicHospital)
+- Entity: Dr. Devangi Jogal (Type: Physician/AyurvedicDoctor)
+- Entity: Vibandha (Type: MedicalCondition/Constipation)
+- Entity: Panchakarma (Type: MedicalProcedure/TherapeuticDetox)
+- Entity: Rasayan Churna (Type: DietarySupplement/AyurvedicCompound)
+
+[HIERARCHY]
+/ -> Clinical Home & AI Consultation Bridge
+/treatments/panchakarma -> Complete 5-Action Shodhana protocols
+/treatments/constipation -> Vibandha clinical diagnosis, Pathyapathya & herbal management
+/treatments/fatty-liver -> Hepatic steatosis reversal protocols & herbal regulators
+/treatments/parkinsons -> Kampavata Vata-pacification, Nasya & Basti procedures
+/knowledge-base/herbs -> Pharmacological monograms (Haritaki, Arjuna, Isabgol, Yashtimadhu)

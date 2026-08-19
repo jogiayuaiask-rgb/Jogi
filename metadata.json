@@ -1,0 +1,6 @@
+{
+  "name": "JOGI Ayu AI - Admin Intelligence Center",
+  "description": "Secure Knowledge Base Admin Dashboard & Vector DB RAG Sync Portal for JOGI Ayu AI",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

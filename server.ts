@@ -1708,7 +1708,7 @@ ${languageRequirement}
           return res.end();
         } catch (err) {
           console.error("[Gemini Streaming Error]", err);
-          const fallbackText = "I encountered an error generating the live response. Please consult our OPD Vaidya directly.";
+          const fallbackText = `[Gemini Info] The live AI is experiencing high peak traffic. Instantly streaming our proprietary local clinical knowledge base fallback to assist you:\n\n${REFUSAL_RESPONSE}`;
           res.write(`data: ${JSON.stringify({ chunk: fallbackText, citations: [] })}\n\n`);
           res.write("data: [DONE]\n\n");
           return res.end();

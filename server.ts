@@ -381,19 +381,12 @@ function logGeminiFallback(contextName: string, err: any) {
   }
 }
 
-// Quota & High Demand circuit breaker state to prevent API spam during 429/503 spikes
-let geminiQuotaLockedUntil = 0;
-
 // Helper for exponential backoff retry on 429 / 503 / RESOURCE_EXHAUSTED / UNAVAILABLE errors
 async function callGeminiWithExponentialBackoff<T>(
   apiCallFn: () => Promise<T>,
   maxRetries = 2,
   baseDelayMs = 800
 ): Promise<T> {
-  if (Date.now() < geminiQuotaLockedUntil) {
-    throw new Error("Gemini API temporarily experiencing high demand - utilizing local knowledge engine.");
-  }
-
   let attempt = 0;
   while (true) {
     try {
@@ -410,10 +403,6 @@ async function callGeminiWithExponentialBackoff<T>(
         errMsg.includes("UNAVAILABLE") ||
         errMsg.includes("Overloaded");
 
-      if (isTransientError && attempt >= maxRetries) {
-        geminiQuotaLockedUntil = Date.now() + 15000; // Brief 15s pause before retrying primary
-      }
-
       if (attempt >= maxRetries || !isTransientError) {
         throw err;
       }
@@ -426,7 +415,7 @@ async function callGeminiWithExponentialBackoff<T>(
 
 // Helper to attempt model generation with automatic fallback models on 503/429 high demand spikes
 async function generateGeminiContentWithFallback(contents: any, defaultModel = "gemini-3.7-flash") {
-  const modelsToTry = [defaultModel, "gemini-2.5-flash", "gemini-1.5-flash"];
+  const modelsToTry = [defaultModel, "gemini-3.1-flash-lite", "gemini-flash-latest"];
   let lastError: any = null;
 
   for (const modelName of modelsToTry) {
@@ -453,7 +442,7 @@ async function generateGeminiContentWithFallback(contents: any, defaultModel = "
 
 // Helper to attempt streaming model generation with automatic fallback models
 async function generateGeminiContentStreamWithFallback(contents: any, defaultModel = "gemini-3.7-flash") {
-  const modelsToTry = [defaultModel, "gemini-2.5-flash", "gemini-1.5-flash"];
+  const modelsToTry = [defaultModel, "gemini-3.1-flash-lite", "gemini-flash-latest"];
   let lastError: any = null;
 
   for (const modelName of modelsToTry) {

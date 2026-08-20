@@ -17,11 +17,36 @@ interface AuthContextType {
   logout: () => Promise<void>;
 }
 
+const safeStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.warn("Storage access denied:", e);
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.warn("Storage write denied:", e);
+    }
+  },
+  removeItem: (key: string): void => {
+    try {
+      localStorage.removeItem(key);
+    } catch (e) {
+      console.warn("Storage remove denied:", e);
+    }
+  }
+};
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<UserProfile | null>(() => {
-    const saved = localStorage.getItem('jogi_authenticated_user');
+    const saved = safeStorage.getItem('jogi_authenticated_user');
     return saved ? JSON.parse(saved) : null;
   });
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -42,10 +67,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
               displayName: firebaseUser.displayName || firebaseUser.email?.split('@')[0] || 'Vaidya User',
             };
             setUser(profile);
-            localStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
+            safeStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
           } else {
             // Check if there's a custom saved user session (e.g. guest or local login)
-            const saved = localStorage.getItem('jogi_authenticated_user');
+            const saved = safeStorage.getItem('jogi_authenticated_user');
             if (saved) {
               try {
                 setUser(JSON.parse(saved));
@@ -60,7 +85,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         });
       } catch (err) {
         console.warn('Firebase Auth Listener fallback:', err);
-        const saved = localStorage.getItem('jogi_authenticated_user');
+        const saved = safeStorage.getItem('jogi_authenticated_user');
         if (saved) {
           try {
             setUser(JSON.parse(saved));
@@ -89,7 +114,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         displayName: res.displayName || 'Jogi Vaidya User',
       };
       setUser(profile);
-      localStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
+      safeStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
     } finally {
       setIsLoading(false);
     }
@@ -104,7 +129,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         displayName: email.split('@')[0] || 'Vaidya Practitioner',
       };
       setUser(profile);
-      localStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
+      safeStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
     } finally {
       setIsLoading(false);
     }
@@ -117,7 +142,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       displayName: 'Guest Patient',
     };
     setUser(profile);
-    localStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
+    safeStorage.setItem('jogi_authenticated_user', JSON.stringify(profile));
   };
 
   const handleLogout = async () => {
@@ -130,7 +155,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       // ignore
     } finally {
       setUser(null);
-      localStorage.removeItem('jogi_authenticated_user');
+      safeStorage.removeItem('jogi_authenticated_user');
       setIsLoading(false);
     }
   };

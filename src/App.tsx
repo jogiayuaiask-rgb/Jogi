@@ -36,10 +36,10 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 export default function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <LanguageProvider>
-          <ErrorBoundary title="JOGI Ayu Platform System Recovery">
+    <ErrorBoundary title="JOGI Ayu Platform System Recovery">
+      <AuthProvider>
+        <ThemeProvider>
+          <LanguageProvider>
             <BrowserRouter>
               <SEOHandler />
               <Routes>
@@ -72,9 +72,9 @@ export default function App() {
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </BrowserRouter>
-          </ErrorBoundary>
-        </LanguageProvider>
-      </ThemeProvider>
-    </AuthProvider>
+          </LanguageProvider>
+        </ThemeProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }

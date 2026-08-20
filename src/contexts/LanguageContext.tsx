@@ -47,18 +47,36 @@ const translations: Record<Language, Record<string, string>> = {
   }
 };
 
+const safeStorage = {
+  getItem: (key: string): string | null => {
+    try {
+      return localStorage.getItem(key);
+    } catch (e) {
+      console.warn("Storage access denied:", e);
+      return null;
+    }
+  },
+  setItem: (key: string, value: string): void => {
+    try {
+      localStorage.setItem(key, value);
+    } catch (e) {
+      console.warn("Storage write denied:", e);
+    }
+  }
+};
+
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('auto');
 
   useEffect(() => {
-    const saved = localStorage.getItem('language') as Language | null;
+    const saved = safeStorage.getItem('language') as Language | null;
     if (saved) setLanguage(saved);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('language', language);
+    safeStorage.setItem('language', language);
   }, [language]);
 
   const t = (key: string) => {

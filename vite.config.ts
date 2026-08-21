@@ -1,11 +1,32 @@
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
+import fs from 'fs';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
   return {
-    plugins: [react(), tailwindcss()],
+    base: '/Jogi/',
+    plugins: [
+      react(), 
+      tailwindcss(),
+      {
+        name: 'copy-404-plugin',
+        closeBundle() {
+          try {
+            const distPath = path.resolve(__dirname, 'dist');
+            const indexPath = path.join(distPath, 'index.html');
+            const targetPath = path.join(distPath, '404.html');
+            if (fs.existsSync(indexPath)) {
+              fs.copyFileSync(indexPath, targetPath);
+              console.log('[SPA Routing] Successfully copied index.html to 404.html');
+            }
+          } catch (err) {
+            console.error('[SPA Routing Error] Failed to copy index.html to 404.html:', err);
+          }
+        }
+      }
+    ],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, './src'),

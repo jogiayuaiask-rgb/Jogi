@@ -40,7 +40,7 @@ export default function App() {
       <AuthProvider>
         <ThemeProvider>
           <LanguageProvider>
-            <BrowserRouter>
+            <BrowserRouter basename="/Jogi/">
               <SEOHandler />
               <Routes>
                 <Route

@@ -35,12 +35,14 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 };
 
 export default function App() {
+  const dynamicBasename = typeof window !== 'undefined' && window.location.pathname.startsWith('/Jogi') ? '/Jogi' : undefined;
+
   return (
     <ErrorBoundary title="JOGI Ayu Platform System Recovery">
       <AuthProvider>
         <ThemeProvider>
           <LanguageProvider>
-            <BrowserRouter basename="/Jogi/">
+            <BrowserRouter basename={dynamicBasename}>
               <SEOHandler />
               <Routes>
                 <Route

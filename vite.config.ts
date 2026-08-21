@@ -5,8 +5,10 @@ import fs from 'fs';
 import { defineConfig } from 'vite';
 
 export default defineConfig(() => {
+  const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+
   return {
-    base: '/Jogi/',
+    base: isGithubActions ? '/Jogi/' : '/',
     plugins: [
       react(), 
       tailwindcss(),

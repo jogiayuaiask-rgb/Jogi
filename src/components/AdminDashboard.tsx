@@ -4,6 +4,7 @@ import { KnowledgeBaseUploader } from './KnowledgeBaseUploader';
 import { LiveDatabaseSyncTable } from './LiveDatabaseSyncTable';
 import { RagMetricsChart } from './RagMetricsChart';
 import { DocumentDistributionChart } from './DocumentDistributionChart';
+import { DashboardWidget } from './DashboardWidget';
 import { ChunkModal } from './ChunkModal';
 import { RagPlaygroundModal } from './RagPlaygroundModal';
 import { TestRetrievalModal } from './TestRetrievalModal';
@@ -748,12 +749,15 @@ export const AdminDashboard: React.FC = () => {
             </div>
 
             {/* Charts Section: RAG Metrics & Donut Chart */}
-            <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-6">
               <div className="xl:col-span-2 h-auto">
                 <RagMetricsChart indexedFiles={indexedFiles} />
               </div>
               <div className="xl:col-span-1 h-auto">
                 <DocumentDistributionChart indexedFiles={indexedFiles} />
+              </div>
+              <div className="xl:col-span-1 h-auto">
+                <DashboardWidget indexedFiles={indexedFiles} />
               </div>
             </div>
 
